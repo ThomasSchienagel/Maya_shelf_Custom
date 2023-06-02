@@ -1,0 +1,1987 @@
+global proc shelf_WORK () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select hierarchy" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Hierarchy" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Hier" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconSelect.png" 
+        -image1 "menuIconSelect.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "SelectHierarchy" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Invert Selection" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "InvertSelection" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Inv" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "invertSelection.png" 
+        -image1 "invertSelection.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "InvertSelection;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Delete construction history on the selected object(s)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "History" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Hist" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "DeleteHistory.png" 
+        -image1 "DeleteHistory.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$objSelect = `ls -sl -o`;\nselect -r $objSelect;\nDeleteHistory" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Center Pivot" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Center Pivot" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Pivot" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "CenterPivot.png" 
+        -image1 "CenterPivot.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "CenterPivot" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Freeze Transformations" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Freeze Transformations" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Freeze" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "FreezeTransform.png" 
+        -image1 "FreezeTransform.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Print ObjectType" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Print ObjectType" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Type" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "question.png" 
+        -image1 "question.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "ls -selection -showType" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Quick_rename_tool" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Quick_rename_tool;" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Name" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "text.png" 
+        -image1 "text.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "Quick_rename_tool;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Seperator" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "VacantCell" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "empty.png" 
+        -image1 "empty.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "print(\"User defined macro\");" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle Face Normals. (Double-Click to adjust the size)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Toggle Face Normals" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Normals" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "vertexNormalEdit.png" 
+        -image1 "vertexNormalEdit.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$showNormals = `ls -sl -o`;\nfor ($each in $showNormals){\n    select -r $each;\n    pickWalk -d down;\n    $selShape = `ls -sl`;\n    $normalsValue = `getAttr ($selShape[0] + \".displayNormal\")`;\n    if ($normalsValue < 1){\n        setAttr ($selShape[0] + \".displayNormal\") 1;\n    } else {\n        setAttr ($selShape[0] + \".displayNormal\") 0;   \n    }\n}\nselect -r $showNormals;\n" 
+        -sourceType "mel" 
+        -doubleClickCommand "ChangeNormalSize;\nsetPolygonDisplaySettings(\"normalSize\");" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle Texture BorderEdges" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Toggle Texture BorderEdges" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "UVEdge" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "render_place2dTexture.png" 
+        -image1 "render_place2dTexture.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "ToggleTextureBorderEdges;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle BorderEdges" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Toggle BorderEdges" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Border" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polySelectEdgeBorder.png" 
+        -image1 "polySelectEdgeBorder.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$showEdges = `ls -sl -o`;\nselect -r $showEdges;\nfor ($each in $showEdges){\n    select -r $each;\n    pickWalk -d down;\n    $selShape = `ls -sl`;\n    $edgesValue = `getAttr ($selShape[0] + \".displayBorders\")`;\n    if ($edgesValue < 1){\n        setAttr ($selShape[0] + \".displayBorders\") 1;\n        setAttr ($selShape[0] + \".borderWidth\") 5;\n    } else {\n        setAttr ($selShape[0] + \".displayBorders\") 0;\n        setAttr ($selShape[0] + \".borderWidth\") 2;        \n    }\n}\n" 
+        -sourceType "mel" 
+        -doubleClickCommand "$showEdges = `ls -sl -o`;\nselect -r $showEdges;\nfor ($each in $showEdges){\n    select -r $each;\n    pickWalk -d down;\n    $selShape = `ls -sl`;\n    $edgesValue = `getAttr ($selShape[0] + \".displayBorders\")`;\n    if ($edgesValue < 1){\n        setAttr ($selShape[0] + \".displayBorders\") 1;\n        setAttr ($selShape[0] + \".borderWidth\") 10;\n    } else {\n        setAttr ($selShape[0] + \".displayBorders\") 0;\n        setAttr ($selShape[0] + \".borderWidth\") 2;        \n    }\n}\n" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle Selection Highlighting" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Toggle Selection Highlighting" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Highlight" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "lattice.png" 
+        -image1 "lattice.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "// Disable \"Selection Highlighting\"\n$visPanels = `getPanel -vis`;\nfor ($each in $visPanels){\n\t$typePanel = `getPanel -to $each`;\n\tif ($typePanel == \"modelPanel\"){\n\t\t$sh_state = `modelEditor -q -sel $each`;\n\t\tif ($sh_state == 0){\n\t\t\tmodelEditor -e -sel true $each;\t\t\n\t\t} else {\n\t\t\tmodelEditor -e -sel false $each;\t\t\n\t\t}\n\t}\n}" 
+        -sourceType "mel" 
+        -doubleClickCommand "$showEdges = `ls -sl -o`;\nselect -r $showEdges;\nfor ($each in $showEdges){\n    select -r $each;\n    pickWalk -d down;\n    $selShape = `ls -sl`;\n    $edgesValue = `getAttr ($selShape[0] + \".displayBorders\")`;\n    if ($edgesValue < 1){\n        setAttr ($selShape[0] + \".displayBorders\") 1;\n        setAttr ($selShape[0] + \".borderWidth\") 10;\n    } else {\n        setAttr ($selShape[0] + \".displayBorders\") 0;\n        setAttr ($selShape[0] + \".borderWidth\") 2;        \n    }\n}\n" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle Backface Culling" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Toggle Backface Culling" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "BFCull" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "reverseSurface.png" 
+        -image1 "reverseSurface.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "$selectObject = `ls -sl -o -type transform`;\nfor ($each in $selectObject){\n\t$tempState = `getAttr ($each + \".backfaceCulling\")`;\n\tif ($tempState == 3){\n\t\tsetAttr ($each + \".backfaceCulling\") 0;\n\t} else {\n\t\tsetAttr ($each + \".backfaceCulling\") 3;\n\t}\n}" 
+        -sourceType "mel" 
+        -doubleClickCommand "$selectObject = `ls -sl -o -type transform`;\nfor ($each in $selectObject){\n\tsetAttr ($each + \".backfaceCulling\") 0;\n}\nprint (\"Backface Culling set to off!\");" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle Local Rotation Axis" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Toggle Local Rotation Axis" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "LRAxis" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconModify.png" 
+        -image1 "menuIconModify.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "ToggleLocalRotationAxes" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle curveEP" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Toggle curveEP" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "DispEP" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "curveEP.png" 
+        -image1 "curveEP.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $selCurve[] = `ls -sl`;\nint $dispStatus = `getAttr ($selCurve[0] + \".dispEP\")`;\nif ($dispStatus == 0){\n\tsetAttr ($selCurve[0] + \".dispEP\") 1;\n} else {\n\tsetAttr ($selCurve[0] + \".dispEP\") 0;\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Seperator" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "VacantCell" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "empty.png" 
+        -image1 "empty.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "print(\"User defined macro\");" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Fill Selection Tool for Maya - 2016 version\n// Author: Daniel Brkovic, Tom Ferstl" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Fill Selection Tool for Maya" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "SFIll" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "selectByComponent.png" 
+        -image1 "selectByComponent.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "// Fill Selection Tool for Maya - 2016 version\n// Author: Daniel Brkovic, Tom Ferstl\n// Special Thanks to: Tom Ferstl, Karsten Wagenknecht, David Kirchner, Kyra Buschor\n// Date: 19-04-2016\n\nglobal string $fsProject[];\nglobal string $fsUVCut[];\n\nglobal proc fillSelection()\n{    \n    selectionFillStart;\n    scriptJob -ro 1 -e \"SelectionChanged\" selectionFillFinish;\n}\n\nglobal proc selectionFillStart()\n{\n\tglobal string $fsProject[];\n\tglobal string $fsUVCut[];\n\tstring $edgeSelection[] = `ls -sl`;\n\tstring $objectSelection[] = `ls -sl -o`;\n\t// UV Projection to create a shell for the selection\n\tstring $fsProject[] = `polyProjection -type Planar -ibd on -cm on -uvSetName selectionFill -md x ($objectSelection[0] + \".f[*]\")`;\n\tpolyUVSet -currentUVSet -uvSet \"selectionFill\" $objectSelection[0];\n\tstring $fsUVCut[] = `polyMapCut $edgeSelection`;\n\tSelectFacetMask;\n}\n\nglobal proc selectionFillFinish()\n{   \n\tglobal string $fsProject[];\n\tglobal string $fsUV[];\n\tglobal string $mfsUVCut[];\n\tglobal string $fsUVCut[];\n    ConvertSelectionToUVShell;\n\tpolyUVSet -d -uvSet \"selectionFill\";\n\t// get history before deleteUV command\n\tstring $historyIntersector;\n    $historyIntersector = `stringArrayIntersector`;\n    string $initialArray[] = `listHistory`;\n    stringArrayIntersector -edit -intersect $initialArray $historyIntersector;\n    // get current history nodes for intersector after\n\tstringArrayIntersector -edit -intersect `listHistory` $historyIntersector;\n    string $result[] = `stringArrayIntersector -query $historyIntersector`;\n    // get difference history nodes\n    string $diff[] = stringArrayRemoveExact($result, `listHistory`);\n    // delete intersector and difference history nodes\n    deleteUI $historyIntersector;\n    \n    delete $diff;\n    delete $fsUVCut;\n    delete $fsProject;\n}\nfillSelection();\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select every 2nd edge/loop. (RMB for more options)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Select every second edge or edgeLoop" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "SRing" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "selectByComponent.png" 
+        -image1 "selectByComponent.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "polySelectEdgesEveryN \"edgeRing\" 2;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Every 2nd edge" ( "polySelectEdgesEveryN \"edgeRing\" 2;" )
+        -mi "Every 3rd edge" ( "polySelectEdgesEveryN \"edgeRing\" 3;" )
+        -mi "Every 4th edge" ( "polySelectEdgesEveryN \"edgeRing\" 4;" )
+        -mi "Every 5th edge" ( "polySelectEdgesEveryN \"edgeRing\" 5;" )
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Combine the selected polygon objects into one single object to allow operations such as merges or face trims" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Combine" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Com" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyUnite.png" 
+        -image1 "polyUnite.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "polyPerformAction polyUnite o 0" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Separate the selected polygon object shells or the shells of any selected faces from the object into distinct objects" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Separate" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Sep" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polySeparate.png" 
+        -image1 "polySeparate.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "SeparatePolygon" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Extract the currently selected faces from their shell and shows a manipulator to adjust their offset" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Extract" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Extract" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyChipOff.png" 
+        -image1 "polyChipOff.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "performPolyChipOff 0 0" 
+        -sourceType "mel" 
+        -doubleClickCommand "ExtractFaceOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Detach selected vertices" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Detach" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Detach" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polySplitVertex.png" 
+        -image1 "polySplitVertex.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "DetachComponent;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Add polygons to the selected polygon objects to smooth them" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Smooth" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Smooth" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polySmooth.png" 
+        -image1 "polySmooth.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "polyPerformAction \"polySmooth  -mth 0 -sdt 2 -ovb 1 -ofb 3 -ofc 0 -ost 1 -ocr 0 -dv 1 -peh 0 -bnr 1 -c 1 -kb 1 -ksb 1 -khe 0 -kt 1 -kmb 1 -suv 1 -sl 1 -dpe 1 -ps 0.1 -ro 1\" f 0" 
+        -sourceType "mel" 
+        -doubleClickCommand "performPolySmooth 1" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Cleanup options" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Cleanup options" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Clean" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "brush.png" 
+        -image1 "brush.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "CleanupPolygonOptions" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Merge Components" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Merge Components" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Merge" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyMerge.png" 
+        -image1 "polyMerge.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "polyMergeVertex  -d 0.001 -am 1 -ch 1;" 
+        -sourceType "mel" 
+        -doubleClickCommand "PolyMergeOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Extrude the selected vertices" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Extrude" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Extude" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyExtrudeFacet.png" 
+        -image1 "polyExtrudeFacet.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "performPolyExtrude 0" 
+        -sourceType "mel" 
+        -doubleClickCommand "PolyExtrudeOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Create a bevel along the selected edges" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Bevel" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Bevel" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyBevel.png" 
+        -image1 "polyBevel.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "polyPerformAction \"polyBevel -com 0 -offset 0.1 -offsetAsFraction 1 -autoFit 1 -segments 1 -worldSpace 1 -uvAssignment 1 -smoothingAngle 30 -fillNgons 1 -mergeVertices 1 -mergeVertexTolerance 0.0001 -miteringAngle 180 -angleTolerance 180\" e 0" 
+        -sourceType "mel" 
+        -doubleClickCommand "BevelPolygonOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Cut, slice and insert edges on polygons." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Multi-Cut" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "MCut" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "multiCut_NEX32.png" 
+        -image1 "multiCut_NEX32.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "MultiCutTool" 
+        -sourceType "mel" 
+        -doubleClickCommand "dR_multiCutTool; toolPropertyWindow;" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Edit edges that respect surface curvature" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Edit Edge Flow" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Flow" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyEditEdgeFlow.png" 
+        -image1 "polyEditEdgeFlow.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "polyEditEdgeFlow -constructionHistory 1 -adjustEdgeFlow 1" 
+        -sourceType "mel" 
+        -doubleClickCommand "PolyEditEdgeFlowOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Transform (Scale, Rotate, Translate...) the selected components (Vertices, Edges or Faces). UVs are moved in the UV Texture Editor" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Transform Components" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Transform" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyMoveVertex.png" 
+        -image1 "polyMoveVertex.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "polyMoveVertex -constructionHistory 1 -random 0" 
+        -sourceType "mel" 
+        -doubleClickCommand "MovePolygonComponentOptions" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Drop points on Live objects to create new faces for re-topology" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Quad Draw" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "QDraw" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "quadDraw_NEX32.png" 
+        -image1 "quadDraw_NEX32.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "QuadDrawTool" 
+        -sourceType "mel" 
+        -doubleClickCommand "dR_quadDrawTool; toolPropertyWindow;" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Normals: Set to Face (RMB for more options)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Set Normal Angle 30" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Normal" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyNormalsPropagate.png" 
+        -image1 "polyNormalsPropagate.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "// Normals: Set to Face\nexpandPolyGroupSelection;\npolySetToFaceNormal;" 
+        -sourceType "mel" 
+        -doubleClickCommand "// Normals: Reverse\nexpandPolyGroupSelection;\nReversePolygonNormals;" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Set to Normal" ( "// Normals: Set to Face\nexpandPolyGroupSelection;\npolySetToFaceNormal;" )
+        -mi "Reverse Polygons" ( "// Normals: Reverse\nexpandPolyGroupSelection;\nReversePolygonNormals;" )
+        -mi "Set Normals - 30" ( "// Normals: SoftenEdge\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tpolySoftEdge -a 30 -ch 1 $each;\n}" )
+        -mi "Set Normals - 60" ( "// Normals: SoftenEdge\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tpolySoftEdge -a 60 -ch 1 $each;\n}" )
+        -mi "Set Normals - 180" ( "// Normals: SoftenEdge\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tpolySoftEdge -a 180 -ch 1 $each;\n}" )
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Seperator" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "VacantCell" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "empty.png" 
+        -image1 "empty.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "UVs: Auto Projection (RMB for more options)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "UV-Mapping" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Map" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "UVEditorUV.png" 
+        -image1 "UVEditorUV.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "UVAutomaticProjection;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Planar_X" ( "// Planar Mapping X Multi\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tselect -r $each;\n\tConvertSelectionToFaces;\n\t$selectFaces = `ls -sl`;\n\tpolyProjection -ch 1 -type Planar -ibd on -kir -md x $selectFaces;\n\tpolyMergeUV -d 0.01 -ch 1 $selectFaces;\n}\nselect -r $selectObj;" )
+        -mi "Planar_Y" ( "// Planar Mapping Y Multi\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tselect -r $each;\n\tConvertSelectionToFaces;\n\t$selectFaces = `ls -sl`;\n\tpolyProjection -ch 1 -type Planar -ibd on -kir -md y $selectFaces;\n\tpolyMergeUV -d 0.01 -ch 1 $selectFaces;\n}\nselect -r $selectObj;" )
+        -mi "Planar_Z" ( "// Planar Mapping Z Multi\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tselect -r $each;\n\tConvertSelectionToFaces;\n\t$selectFaces = `ls -sl`;\n\tpolyProjection -ch 1 -type Planar -ibd on -kir -md z $selectFaces;\n\tpolyMergeUV -d 0.01 -ch 1 $selectFaces;\n}\nselect -r $selectObj;\n" )
+        -mi "Cylindric" ( "// Cylindrical Mapping\nConvertSelectionToFaces;\n$selectFaces = `ls -sl`;\n$cylProj = `polyProjection -ch 1 -type Cylindrical -ibd on -sf on $selectFaces`;\npolyMergeUV -d 0.01 -ch 1 $selectFaces;\nselect -r $selectFaces;" )
+        -mi "Auto" ( "UVAutomaticProjection;" )
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Unfold 3D - UVs" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Unfold UVs" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Unfold" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "textureEditorUnfoldUVsLarge.png" 
+        -image1 "textureEditorUnfoldUVsLarge.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "u3dUnfold;" 
+        -sourceType "mel" 
+        -doubleClickCommand "// Unfold 3D - multiple Objects\n\n$storeObjects = `ls -sl -o`;\nfor ($each in $storeObjects){\n\tselect -r $each;\n\tConvertSelectionToUVs;\n\t$selectUVs = `ls -sl`;\n\tselect -r $selectUVs;\n\tperformUnfold 0;\n\tUnfold3D -u -ite 1 -p 1 -bi 1 -tf 1 -ms 1024 -rs 2;\n\t$selectObject = `ls -sl -o`;\n\tselect -d $selectUVs;\n\tselect -r $selectObject;\n\tDeleteHistory;\n}" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Optimize 3D - UVs" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Optimize UVs" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Optim" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "textureEditorUnfoldUVsLarge.png" 
+        -image1 "textureEditorUnfoldUVsLarge.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "u3dOptimize;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Merge UVs" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Merge UVs" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Merge" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyMergeUV.png" 
+        -image1 "polyMergeUV.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "// Merge UVs\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tselect -r $each;\n\tConvertSelectionToUVs;\n\t$selectFaces = `ls -sl`;\n\tpolyMergeUV -d 0.001 -ch 1 $selectFaces;\n}\nselect -r $selectObj;" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "UV-Layout" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Layout" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Lay" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "polyLayoutUV.png" 
+        -image1 "polyLayoutUV.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "u3dLayout;" 
+        -sourceType "mel" 
+        -doubleClickCommand "$selectObject = `ls -sl -o`;\nselect -r $selectObject;\npolyMultiLayoutUV -lm 1 -sc 1 -rbf 2 -fr 1 -ps 0.05 -l 2 -psc 0 -su 1 -sv 1 -ou 0 -ov 0;\nDeleteHistory;" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "CleanUVSets" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "CleanUVSets" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Clean" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "uvlatticeLarge.png" 
+        -image1 "uvlatticeLarge.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "// Dialog\nif (`window -exists cleanWindow`) deleteUI cleanWindow;\nwindow -title \"Verifying Action\" -widthHeight 270 110 cleanWindow;\nif (`windowPref -exists cleanWindow`) windowPref -remove cleanWindow;\nscrollLayout scrollLayout;\n    columnLayout -adjustableColumn true;\n    separator -height 5 -style \"none\";\n\ttext -align \"left\" -label \" - This deletes unneccesary UV-Sets\";\n\ttext -align \"left\" -label \" - The currently active UV-Set will be kept\";\n\tseparator -height 10 -style \"none\";\n\ttext -align \"center\" -label \"CleanUp UV-Sets?\";\n    separator -height 15 -style \"none\";\n    rowLayout -numberOfColumns 2 -columnWidth2 140 140 -columnAlign2 \"center\" \"center\";\n    string $myBtn1 = `button -width 110 -l \"OK\" -c (\"cleanUp_UVSets()\")`;\n    string $myBtn2 = `button -width 110 -l \"Cancel\" -c (\"deleteUI cleanWindow\")`;\nshowWindow cleanWindow;\n\n\nproc cleanUp_UVSets(){\n\t//CleanUp UV-Sets\n\tprint (\"\\n\");\n\t$selMeshUV = `ls -sl -type transform`;\n\tif (size($selMeshUV) == 0){\n\t\terror \"*** Nothing is selected. Please select at least one mesh. ***\\n\";\n\t} else {\n\t\tprint (\"*** Cleaning Up UV-Sets... ***\\n\");\n\t}\n\t\n\tfor ($each in $selMeshUV){\n\t\tselect -r $each;\n\t\tprint ($each + \"\\n\");\n\t\t\n\t\t// check if \"map1\" already exists and create it if not\n\t\t$allUvSets = `polyUVSet -q -allUVSets`;\n\t\t$countTemp = stringArrayContains(\"map1\", $allUvSets);\n\t\tif ($countTemp == 0){\n\t\t\tpolyUVSet -create -uvSet \"map1\" $each;\t\t\t\n\t\t}\n\t\t// --------------------------------------------------------------\n\t\t\t\n\t\t$allUvSets = `polyUVSet -q -allUVSets`; // recreate variable\n\t\t$defaultUVSet = $allUvSets[0];\n\t\t$currentUVSet = `polyUVSet -q -currentUVSet`;\n\t\tprint (\"\t...copying UVs:\t\t\" + $currentUVSet[0] + \" --> \" + $defaultUVSet + \"\\n\");\n\t\tpolyCopyUV -uvSetNameInput $currentUVSet -uvSetName $defaultUVSet -ch 1 $each;\n\t\tfor ($set in $allUvSets){\n\t\t\tif ($set != $defaultUVSet){\n\t\t\t\tprint (\"\t...deleting map:\t\" + $set + \"\\n\");\n\t\t\t\tpolyUVSet -delete -uvSet $set;\n\t\t\t}\n\t\t}\n\t\t$resultSet = `polyUVSet -q -currentUVSet`;\n\t\tif ($resultSet[0] != \"map1\"){\n\t\t\tprint (\"\t...renaming defaultUVSet:\t\" + $resultSet[0] + \" --> map1\\n\");\n\t\t\tpolyUVSet -rename -newUVSet \"map1\";\n\t\t}\n\t\t//polyUVSet -delete -uvSet $defaultUVSet;\n\t\tclear $allUvSets;\n\t}\n\tdeleteUI cleanWindow;\n\tselect -r $selMeshUV;\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Seperator" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "VacantCell" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "empty.png" 
+        -image1 "empty.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "print(\"User defined macro\");" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Lambert Material: Assign a new Lambert material to the active objects" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "User Script" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Mat" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "render_adskMaterial.png" 
+        -image1 "render_adskMaterial.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "createAssignNewMaterialTreeLister \"\"" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    separator
+        -enable 1
+        -width 12
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -style "shelf" 
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Display and edit relationships among nodes of the scene" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Node Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Node" 
+        -overlayLabelColor 0.5 1 1 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "hypergraph.png" 
+        -image1 "hypergraph.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "NodeEditorWindow" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Texture coordinate mapping view" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "UV Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "UV" 
+        -overlayLabelColor 0.5 1 1 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "textureEditor.png" 
+        -image1 "textureEditor.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "TextureViewWindow" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Display and edit connections in shading networks" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Hypershade" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Hyper" 
+        -overlayLabelColor 0.5 1 1 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "hypershade.png" 
+        -image1 "hypershade.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "HypershadeWindow" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Display file paths, resolve path errors, and repath files used in your scene" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "File Path Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "FileP" 
+        -overlayLabelColor 0.5 1 1 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "FilePathEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Opens the Graph Editor, a tool for editing animation curves" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Graph Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Graph" 
+        -overlayLabelColor 0.5 1 1 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "animPrefsWndIcon.png" 
+        -image1 "animPrefsWndIcon.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "GraphEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Make connections between object attributes" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Connection Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "CE" 
+        -overlayLabelColor 0.5 1 1 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "setDrivenKeyframe.png" 
+        -image1 "setDrivenKeyframe.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "ConnectionEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Seperator" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "VacantCell" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "empty.png" 
+        -image1 "empty.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "print(\"User defined macro\");" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Build Locator" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Build Locator" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Build" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "locator.png" 
+        -image1 "locator.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "string $newLoc[];\nfloat $tempPos[];\nstring $selection[] = `ls -sl -o`;\nif ($selection[0] == \"\") CreateLocator;\nfor ($each in $selection){\n\tselect -r $each;\n    $tempPos = `xform -q -t -ws $each`;\n    $newLoc = `spaceLocator -p 0 0 0`;\n\tselect -r $newLoc[0] $each;\n\tMatchTransform;\n\tCenterPivot;\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Aim-Constraint an object to a locator. (If a second object is selected locator becomes a child of that object)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Aim-Constraint" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Aim" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "aimConstraint.png" 
+        -image1 "aimConstraint.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "// Create Aim-Constrained Light\n$selLight = `ls -sl -o`;\n$lightTarget = `spaceLocator -p 0 0 0 -n (\"Target_\"+$selLight[0])`;\nselect -r $lightTarget;\nselect -add $selLight[0];\naimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType \"vector\" -worldUpVector 0 1 0;\nselect -r $selLight[0];\n" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Create an offset group of the selected object" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Create an offset group" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "Offset" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "group.png" 
+        -image1 "group.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "// Create Null-Object Offset\nstring $selectObj[];\nstring $newOffset;\nstring $tempConst[];\n\n$selectObj = `ls -sl -o`;\nfor ($each in $selectObj){\n    print ($each + \"\\n\");\n\t$newOffset = `group -em -n ($each + \"_Offset\")`;\n\t$tempConst = `parentConstraint $each $newOffset`;\n\tdelete $tempConst[0];\n\tparent $each $newOffset;\n}" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select edge or edge-loop to calculate it's length" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Calculate ArcLength" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "ArcLen" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "distanceDim.png" 
+        -image1 "distanceDim.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "// Calculate arcLength of selected edge-loop\nstring $curveNode[] = `polyToCurve -form 0 -degree 1`;\nstring $curveInfoNode = `arclen -ch on $curveNode[0]`;\n$arcLength = `getAttr ($curveInfoNode + \".arcLength\")`;\naddAttr -ln \"arcLength\" -at double $curveNode[0];\nsetAttr -e -cb true -k false ($curveNode[0] + \".arcLength\");\nconnectAttr -f ($curveInfoNode + \".arcLength\") ($curveNode[0] + \".arcLength\");\nprint (\"ArcLength = \" + $arcLength);\nselect -r $curveNode[0];" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Setup focusDistance based on target object. Select camera and one target object. (Arnold and Redshift supported)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "CamDist" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "DOF" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "cameraAim.png" 
+        -image1 "cameraAim.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "# Create a distance node based on a camera and one target object. Connect the distance node into the related focusDistance attribute.\n# Arnold and Redshift supported\n\nimport maya.cmds as cmds\nimport maya.OpenMaya as om\n\n# extending the exception class by custom classes\nclass SelectionNotValid(Exception):\n    pass\n\n# test script\n#cmds.file(\"D:/02_Portfolio/01_Production/TechArtist/DistanceCamera/scenes/DistamceCam_testScene.mb\", force=True, open=True)\n\n# variables\ncamera = \"\"\ntarget = \"\"\ncamera_shape = \"\"\ntarget_shape = \"\"\ncamera_position\ntarget_postion\n\n# helper functions\ndef get_shapeNode(object):\n    shapes = cmds.listRelatives(object, shapes=True)\n    if shapes:\n        return shapes\n\ndef get_worldPosition(object):\n    position = cmds.xform (object, q=True, ws=True, t=True)\n    return position\n\n# get current selection and do sanity check\nselect_current = cmds.ls( selection=True )\nif not len(select_current) == 2:\n    raise SelectionNotValid(\"Please select a camera and one target object.\")\n\n# check nodetypes of selection\nfor each in select_current:\n    node = get_shapeNode(each)\n    if cmds.nodeType(node) == \"camera\":\n        print(f\"Camera object: {each}\")\n        camera = each\n        camera_shape = node[0]\n        camera_position = get_worldPosition(camera)\n    else:\n        target = each\n        target_shape = node[0]\n        target_postion = get_worldPosition(target)\n        print(f\"Target object: {each}\")\n\n# if no camera has been found abort script\nif not camera:\n    raise SelectionNotValid(\"Please select a camera and one target object.\")\n\n# create locator at camera and targets position\nlocator_camera = cmds.spaceLocator(a=True, n=f\"{camera}_locCam\", p=camera_position)\nlocator_target = cmds.spaceLocator(a=True, n=f\"{camera}_locTarget\", p=target_postion)\n\n# create distanceDimension based on locators\ncmds.select (locator_camera, locator_target, r=True)\ndistance_shape = cmds.distanceDimension()\ndistance_transform = cmds.listRelatives(distance_shape, type='transform', p=True)\n\n# check if a camera connection already exists\ncheckConnection = cmds.listConnections (camera_shape + \".focusDistance\")\n\nif checkConnection:\n    # abort process if a connection already exists\n    om.MGlobal.displayWarning(f\"'{camera_shape}.focusDistance' already has an incoming connection. Aborting process...\")\n    cmds.delete (distance_transform, locator_camera, locator_target)\n\nelse:\n    # connect distance to camera focusDistance attribute\n    cmds.connectAttr(distance_shape + \".distance\", camera_shape + \".focusDistance\")    \n    # make additional connections based on the current renderer\n    connectRenderer()\n    \n    # parent locator to camera and target\n    cmds.parent (locator_camera, camera)\n    cmds.parent (locator_target, target)\n\n    # process finished\n    om.MGlobal.displayInfo(f\"***    '{camera}' successfully connected to distance-node '{distance_transform}'.    ***\")\n\n\n# ---------------------------------------------------\n# make connection based on the individual renderer\ndef connectRenderer():\n    renderer = cmds.getAttr(f\"defaultRenderGlobals.ren\")\n    om.MGlobal.displayInfo(f\"Active renderer: {renderer}\")\n    \n    # Arnold\n    if (renderer == \"arnold\"):\n        cmds.connectAttr(distance_shape + \".distance\", camera_shape + \".ai_focus_distance\")\n        \n    # Redshift\n    elif (renderer == \"redshift\"):\n        # check if camera has a lensShader applied\n        lensShader = cmds.listConnections(camera_shape + \".rsLensShader\")\n        if lensShader:\n            try:\n                cmds.connectAttr(distance_shape + \".distance\", lensShader[0] + \".dofFocusDistance\")\n            except:\n                om.MGlobal.displayWarning(f\"'{lensShader}.dofFocusDistance' already has an incoming connection. Skipping attempt to connect attributes.\")\n        # if not - create a lensShader and make connections\n        else:\n            om.MGlobal.displayWarning(\"No redshift lensShader found. Creating 'rsBokeh' node for selected camera.\")\n            bokeh_node = cmds.shadingNode(\"RedshiftBokeh\", asUtility=True)\n            cmds.connectAttr(bokeh_node + \".message\", camera_shape + \".rsLensShader\")\n            cmds.connectAttr(distance_shape + \".distance\", bokeh_node + \".dofFocusDistance\")\n            \n    # Maya Renderer\n    elif (renderer == \"mayaSoftware\", \"mayaHardware2\", \"turtle\"):\n        pass\n    else:\n        om.MGlobal.displayWarning(\"An unknown renderer is currently used. Using default connection to camera.\")\n        " 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Shelf Version 1.0" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Version Info" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "v1.0" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "empty.png" 
+        -image1 "empty.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "print(\"User defined macro\");" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 
