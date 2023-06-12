@@ -1264,10 +1264,10 @@ global proc shelf_WORK () {
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
-        -mi "Planar_X" ( "// Planar Mapping X Multi\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tselect -r $each;\n\tConvertSelectionToFaces;\n\t$selectFaces = `ls -sl`;\n\tpolyProjection -ch 1 -type Planar -ibd on -kir -md x $selectFaces;\n\tpolyMergeUV -d 0.01 -ch 1 $selectFaces;\n}\nselect -r $selectObj;" )
-        -mi "Planar_Y" ( "// Planar Mapping Y Multi\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tselect -r $each;\n\tConvertSelectionToFaces;\n\t$selectFaces = `ls -sl`;\n\tpolyProjection -ch 1 -type Planar -ibd on -kir -md y $selectFaces;\n\tpolyMergeUV -d 0.01 -ch 1 $selectFaces;\n}\nselect -r $selectObj;" )
-        -mi "Planar_Z" ( "// Planar Mapping Z Multi\n$selectObj = `ls -sl`;\nfor ($each in $selectObj){\n\tselect -r $each;\n\tConvertSelectionToFaces;\n\t$selectFaces = `ls -sl`;\n\tpolyProjection -ch 1 -type Planar -ibd on -kir -md z $selectFaces;\n\tpolyMergeUV -d 0.01 -ch 1 $selectFaces;\n}\nselect -r $selectObj;\n" )
-        -mi "Cylindric" ( "// Cylindrical Mapping\nConvertSelectionToFaces;\n$selectFaces = `ls -sl`;\n$cylProj = `polyProjection -ch 1 -type Cylindrical -ibd on -sf on $selectFaces`;\npolyMergeUV -d 0.01 -ch 1 $selectFaces;\nselect -r $selectFaces;" )
+        -mi "Planar_X" ( "// Planar Mapping\nConvertSelectionToFaces;\npolyProjection -ch 1 -type Planar -ibd on -kir  -md x;" )
+        -mi "Planar_Y" ( "// Planar Mapping\nConvertSelectionToFaces;\npolyProjection -ch 1 -type Planar -ibd on -kir  -md y;" )
+        -mi "Planar_Z" ( "// Planar Mapping X\nConvertSelectionToFaces;\npolyProjection -ch 1 -type Planar -ibd on -kir  -md z;" )
+        -mi "Cylindric" ( "// Cylindrical Mapping\nConvertSelectionToFaces;\n$cylProj = `polyProjection -ch 1 -type Cylindrical -ibd on -sf on`;\n" )
         -mi "Auto" ( "UVAutomaticProjection;" )
     ;
     shelfButton
@@ -1409,6 +1409,41 @@ global proc shelf_WORK () {
         -command "u3dLayout;" 
         -sourceType "mel" 
         -doubleClickCommand "$selectObject = `ls -sl -o`;\nselect -r $selectObject;\npolyMultiLayoutUV -lm 1 -sc 1 -rbf 2 -fr 1 -ps 0.05 -l 2 -psc 0 -su 1 -sv 1 -ou 0 -ov 0;\nDeleteHistory;" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "TransferUVs - First select source, then target objects" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "TransferUVs" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "TransferUVs" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "UV_Unfold_BrushLarge.png" 
+        -image1 "UV_Unfold_BrushLarge.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "# Transfer UVs from one object to multiple objects. First select source, then targets\n\nimport maya.cmds as cmds\n\ndef transferUVs():\n    selection = []\n    selection = cmds.ls(selection=True, type='transform')\n    if selection:\n        firstObject = selection.pop(0)\n        for obj in selection:\n            print (obj)\n            cmds.select(clear=True)\n            cmds.transferAttributes(firstObject, obj, transferUVs=2, sampleSpace=4, searchMethod=3)\n            cmds.select(obj, replace =True)\n            cmds.DeleteHistory()\n            \ntransferUVs()" 
+        -sourceType "python" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -1691,11 +1726,11 @@ global proc shelf_WORK () {
         -flipY 0
         -useAlpha 1
         -font "plainLabelFont" 
-        -imageOverlayLabel "Graph" 
+        -imageOverlayLabel "Anim" 
         -overlayLabelColor 0.5 1 1 
         -overlayLabelBackColor 0 0 0 0.5 
-        -image "animPrefsWndIcon.png" 
-        -image1 "animPrefsWndIcon.png" 
+        -image "splineTangent.png" 
+        -image1 "splineTangent.png" 
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
@@ -1943,7 +1978,7 @@ global proc shelf_WORK () {
         -style "iconOnly" 
         -marginWidth 0
         -marginHeight 1
-        -command "# Create a distance node based on a camera and one target object. Connect the distance node into the related focusDistance attribute.\n# Arnold and Redshift supported\n\nimport maya.cmds as cmds\nimport maya.OpenMaya as om\n\n# extending the exception class by custom classes\nclass SelectionNotValid(Exception):\n    pass\n\n# test script\n#cmds.file(\"D:/02_Portfolio/01_Production/TechArtist/DistanceCamera/scenes/DistamceCam_testScene.mb\", force=True, open=True)\n\n# variables\ncamera = \"\"\ntarget = \"\"\ncamera_shape = \"\"\ntarget_shape = \"\"\ncamera_position\ntarget_postion\n\n# helper functions\ndef get_shapeNode(object):\n    shapes = cmds.listRelatives(object, shapes=True)\n    if shapes:\n        return shapes\n\ndef get_worldPosition(object):\n    position = cmds.xform (object, q=True, ws=True, t=True)\n    return position\n\n# get current selection and do sanity check\nselect_current = cmds.ls( selection=True )\nif not len(select_current) == 2:\n    raise SelectionNotValid(\"Please select a camera and one target object.\")\n\n# check nodetypes of selection\nfor each in select_current:\n    node = get_shapeNode(each)\n    if cmds.nodeType(node) == \"camera\":\n        print(f\"Camera object: {each}\")\n        camera = each\n        camera_shape = node[0]\n        camera_position = get_worldPosition(camera)\n    else:\n        target = each\n        target_shape = node[0]\n        target_postion = get_worldPosition(target)\n        print(f\"Target object: {each}\")\n\n# if no camera has been found abort script\nif not camera:\n    raise SelectionNotValid(\"Please select a camera and one target object.\")\n\n# create locator at camera and targets position\nlocator_camera = cmds.spaceLocator(a=True, n=f\"{camera}_locCam\", p=camera_position)\nlocator_target = cmds.spaceLocator(a=True, n=f\"{camera}_locTarget\", p=target_postion)\n\n# create distanceDimension based on locators\ncmds.select (locator_camera, locator_target, r=True)\ndistance_shape = cmds.distanceDimension()\ndistance_transform = cmds.listRelatives(distance_shape, type='transform', p=True)\n\n# check if a camera connection already exists\ncheckConnection = cmds.listConnections (camera_shape + \".focusDistance\")\n\nif checkConnection:\n    # abort process if a connection already exists\n    om.MGlobal.displayWarning(f\"'{camera_shape}.focusDistance' already has an incoming connection. Aborting process...\")\n    cmds.delete (distance_transform, locator_camera, locator_target)\n\nelse:\n    # connect distance to camera focusDistance attribute\n    cmds.connectAttr(distance_shape + \".distance\", camera_shape + \".focusDistance\")    \n    # make additional connections based on the current renderer\n    connectRenderer()\n    \n    # parent locator to camera and target\n    cmds.parent (locator_camera, camera)\n    cmds.parent (locator_target, target)\n\n    # process finished\n    om.MGlobal.displayInfo(f\"***    '{camera}' successfully connected to distance-node '{distance_transform}'.    ***\")\n\n\n# ---------------------------------------------------\n# make connection based on the individual renderer\ndef connectRenderer():\n    renderer = cmds.getAttr(f\"defaultRenderGlobals.ren\")\n    om.MGlobal.displayInfo(f\"Active renderer: {renderer}\")\n    \n    # Arnold\n    if (renderer == \"arnold\"):\n        cmds.connectAttr(distance_shape + \".distance\", camera_shape + \".ai_focus_distance\")\n        \n    # Redshift\n    elif (renderer == \"redshift\"):\n        # check if camera has a lensShader applied\n        lensShader = cmds.listConnections(camera_shape + \".rsLensShader\")\n        if lensShader:\n            try:\n                cmds.connectAttr(distance_shape + \".distance\", lensShader[0] + \".dofFocusDistance\")\n            except:\n                om.MGlobal.displayWarning(f\"'{lensShader}.dofFocusDistance' already has an incoming connection. Skipping attempt to connect attributes.\")\n        # if not - create a lensShader and make connections\n        else:\n            om.MGlobal.displayWarning(\"No redshift lensShader found. Creating 'rsBokeh' node for selected camera.\")\n            bokeh_node = cmds.shadingNode(\"RedshiftBokeh\", asUtility=True)\n            cmds.connectAttr(bokeh_node + \".message\", camera_shape + \".rsLensShader\")\n            cmds.connectAttr(distance_shape + \".distance\", bokeh_node + \".dofFocusDistance\")\n            \n    # Maya Renderer\n    elif (renderer == \"mayaSoftware\", \"mayaHardware2\", \"turtle\"):\n        pass\n    else:\n        om.MGlobal.displayWarning(\"An unknown renderer is currently used. Using default connection to camera.\")\n        " 
+        -command "# Create a distance node based on a camera and one target object. Connect the distance node into the related focusDistance attribute.\n# Arnold and Redshift supported\n\nimport maya.cmds as cmds\nimport maya.OpenMaya as om\n\n# extending the exception class by custom classes\nclass SelectionNotValid(Exception):\n    pass\n\n# test script\n#cmds.file(\"D:/02_Portfolio/01_Production/TechArtist/DistanceCamera/scenes/DistamceCam_testScene.mb\", force=True, open=True)\n\n# variables\ncamera = \"\"\ntarget = \"\"\ncamera_shape = \"\"\ntarget_shape = \"\"\ncamera_position = []\ntarget_postion = []\n\n# ---------------------------------------------------\n# helper functions\ndef get_shapeNode(object):\n    shapes = cmds.listRelatives(object, shapes=True)\n    if shapes:\n        return shapes\n\ndef get_worldPosition(object):\n    position = cmds.xform (object, q=True, ws=True, t=True)\n    return position\n\n# ---------------------------------------------------\n# make connection based on the individual renderer\ndef connectRenderer():\n    renderer = cmds.getAttr(f\"defaultRenderGlobals.ren\")\n    om.MGlobal.displayInfo(f\"Active renderer: {renderer}\")\n    \n    # Arnold\n    if (renderer == \"arnold\"):\n        cmds.connectAttr(distance_shape + \".distance\", camera_shape + \".ai_focus_distance\")\n        \n    # Redshift\n    elif (renderer == \"redshift\"):\n        # check if camera has a lensShader applied\n        lensShader = cmds.listConnections(camera_shape + \".rsLensShader\")\n        if lensShader:\n            try:\n                cmds.connectAttr(distance_shape + \".distance\", lensShader[0] + \".dofFocusDistance\")\n            except:\n                om.MGlobal.displayWarning(f\"'{lensShader}.dofFocusDistance' already has an incoming connection. Skipping attempt to connect attributes.\")\n        # if not - create a lensShader and make connections\n        else:\n            om.MGlobal.displayWarning(\"No redshift lensShader found. Creating 'rsBokeh' node for selected camera.\")\n            bokeh_node = cmds.shadingNode(\"RedshiftBokeh\", asUtility=True)\n            cmds.connectAttr(bokeh_node + \".message\", camera_shape + \".rsLensShader\")\n            cmds.connectAttr(distance_shape + \".distance\", bokeh_node + \".dofFocusDistance\")\n            \n    # Maya Renderer\n    elif (renderer == \"mayaSoftware\", \"mayaHardware2\", \"turtle\"):\n        pass\n    else:\n        om.MGlobal.displayWarning(\"An unknown renderer is currently used. Using default connection to camera.\")\n\n# ---------------------------------------------------\n# get current selection and do sanity check\nselect_current = cmds.ls( selection=True )\nif not len(select_current) == 2:\n    raise SelectionNotValid(\"Please select a camera and one target object.\")\n\n# check nodetypes of selection\nfor each in select_current:\n    node = get_shapeNode(each)\n    if cmds.nodeType(node) == \"camera\":\n        print(f\"Camera object: {each}\")\n        camera = each\n        camera_shape = node[0]\n        camera_position = get_worldPosition(camera)\n    else:\n        target = each\n        target_shape = node[0]\n        target_postion = get_worldPosition(target)\n        print(f\"Target object: {each}\")\n\n# if no camera has been found abort script\nif not camera:\n    raise SelectionNotValid(\"Please select a camera and one target object.\")\n\n# create locator at camera and targets position\nlocator_camera = cmds.spaceLocator(a=True, n=f\"{camera}_locCam\", p=camera_position)\nlocator_target = cmds.spaceLocator(a=True, n=f\"{camera}_locTarget\", p=target_postion)\n\n# create distanceDimension based on locators\ncmds.select (locator_camera, locator_target, r=True)\ndistance_shape = cmds.distanceDimension()\ndistance_transform = cmds.listRelatives(distance_shape, type='transform', p=True)\n\n# check if a camera connection already exists\ncheckConnection = cmds.listConnections (camera_shape + \".focusDistance\")\n\nif checkConnection:\n    # abort process if a connection already exists\n    om.MGlobal.displayWarning(f\"'{camera_shape}.focusDistance' already has an incoming connection. Aborting process...\")\n    cmds.delete (distance_transform, locator_camera, locator_target)\n\nelse:\n    # connect distance to camera focusDistance attribute\n    cmds.connectAttr(distance_shape + \".distance\", camera_shape + \".focusDistance\")    \n    # make additional connections based on the current renderer\n    connectRenderer()\n    \n    # parent locator to camera and target\n    cmds.parent (locator_camera, camera)\n    cmds.parent (locator_target, target)\n\n    # process finished\n    om.MGlobal.displayInfo(f\"***    '{camera}' successfully connected to distance-node '{distance_transform}'.    ***\")" 
         -sourceType "python" 
         -commandRepeatable 1
         -flat 1
