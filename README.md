@@ -3,7 +3,7 @@ Personal work shelf for easier and faster access to the most common functions an
 
 ![image](https://github.com/ThomasSchienagel/Maya_shelf_Custom/assets/135319899/9fbc6524-7400-4456-98de-0ef7658a7c01)
 
-Included tools:
+Included tools and functions:
 - Basic Functions
 - Toggle Visibility 
 - Modeling Tools
