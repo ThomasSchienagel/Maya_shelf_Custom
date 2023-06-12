@@ -1,4 +1,5 @@
 # Maya_shelf_Custom
  
-![image](https://github.com/ThomasSchienagel/Maya_shelf_Custom/assets/135319899/e7c324cd-550c-4c09-9437-e49a0d5434fb)
+
+![repository-open-graph-template](https://github.com/ThomasSchienagel/Maya_shelf_Custom/assets/135319899/c60bc3c6-dd06-4bde-b3e9-c3fd48480eb0)
 
